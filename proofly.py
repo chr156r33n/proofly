@@ -7,7 +7,7 @@ openai.api_key = st.secrets["openai"]["api_key"]
 
 # Function to get feedback from OpenAI API
 def get_feedback(text, purpose, pre_prompt):
-    response = openai.Chat.create(
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": pre_prompt},
