@@ -2,8 +2,8 @@
 import streamlit as st
 import openai
 
-# Set your OpenAI API key
-openai.api_key = 'YOUR_API_KEY'
+# Set your OpenAI API key from Streamlit secrets
+openai.api_key = st.secrets["openai"]["api_key"]
 
 # Function to get feedback from OpenAI API
 def get_feedback(text, purpose, pre_prompt):
