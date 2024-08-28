@@ -12,7 +12,7 @@ def call_openai_api(api_key, prompt, pre_prompt):
     data = {
         "model": "gpt-4o",  # Specify the model
         "messages": [
-            {"role": "system", "content": pre_prompt},  # Use the user-defined pre-prompt
+            {"role": "system", "content": "You are an experienced copy-editor, please give advice on how to change the content and explain the rationale behind each of the changes."},  # Use the user-defined pre-prompt
             {"role": "user", "content": prompt}  # User message
         ],
         "max_tokens": 1500,
@@ -26,10 +26,10 @@ def call_openai_api(api_key, prompt, pre_prompt):
 st.title("Proofreading App")
 text_input = st.text_area("Paste your work here:")
 purpose_input = st.text_input("Purpose of the text:")
-pre_prompt_input = st.text_area("Set a pre-prompt:")
+# pre_prompt_input = st.text_area("Set a pre-prompt:")
 
 if st.button("Get Feedback"):
-    if text_input and purpose_input and pre_prompt_input:
+    if text_input and purpose_input: # and pre_prompt_input:
         api_key = st.secrets["openai"]["api_key"]  # Get API key from Streamlit secrets
         prompt = f"Proofread the following text for the purpose of {purpose_input}: {text_input}"
         feedback_response = call_openai_api(api_key, prompt, pre_prompt_input)
