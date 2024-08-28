@@ -4,7 +4,7 @@ import requests
 import json
 
 # Function to call the OpenAI API directly
-def call_openai_api(api_key, prompt, pre_prompt):
+def call_openai_api(api_key, prompt):
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
@@ -12,7 +12,7 @@ def call_openai_api(api_key, prompt, pre_prompt):
     data = {
         "model": "gpt-4o",  # Specify the model
         "messages": [
-            {"role": "system", "content": "You are an experienced copy-editor, please give advice on how to change the content and explain the rationale behind each of the changes."},  # Use the user-defined pre-prompt
+            {"role": "system", "content": "You are ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture.\nKnowledge cutoff: 2023-10\nCurrent date: 2024-08-07."},  # Hardcoded pre-prompt
             {"role": "user", "content": prompt}  # User message
         ],
         "max_tokens": 1500,
@@ -26,13 +26,12 @@ def call_openai_api(api_key, prompt, pre_prompt):
 st.title("Proofreading App")
 text_input = st.text_area("Paste your work here:")
 purpose_input = st.text_input("Purpose of the text:")
-# pre_prompt_input = st.text_area("Set a pre-prompt:")
 
 if st.button("Get Feedback"):
-    if text_input and purpose_input: # and pre_prompt_input:
+    if text_input and purpose_input:
         api_key = st.secrets["openai"]["api_key"]  # Get API key from Streamlit secrets
         prompt = f"Proofread the following text for the purpose of {purpose_input}: {text_input}"
-        feedback_response = call_openai_api(api_key, prompt) #, pre_prompt_input)
+        feedback_response = call_openai_api(api_key, prompt)
         
         # Extract the content from the response
         if 'choices' in feedback_response and len(feedback_response['choices']) > 0:
