@@ -9,7 +9,7 @@ openai.api_key = st.secrets["openai"]["api_key"]
 def get_feedback(text, purpose, pre_prompt):
     response = openai.completions.create(
         model="gpt-3.5-turbo",
-        messages=[
+        prompt=[
             {"role": "system", "content": pre_prompt},
             {"role": "user", "content": f"Proofread the following text for the purpose of {purpose}: {text}"}
         ]
