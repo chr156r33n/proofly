@@ -12,7 +12,7 @@ def call_openai_api(api_key, prompt):
     data = {
         "model": "gpt-4o",  # Specify the model
         "messages": [
-            {"role": "system", "content": "You are ChatGPT, a large language model trained by OpenAI, based on the GPT-4 architecture.\nKnowledge cutoff: 2023-10\nCurrent date: 2024-08-07."},  # Hardcoded pre-prompt
+            {"role": "system", "content": "You are an experienced copy editor, please give feedback on the input against the purpose and give detailed feedback on what you'd change and why."},  # Hardcoded pre-prompt
             {"role": "user", "content": prompt}  # User message
         ],
         "max_tokens": 1500,
