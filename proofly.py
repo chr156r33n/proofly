@@ -32,7 +32,7 @@ if st.button("Get Feedback"):
     if text_input and purpose_input: # and pre_prompt_input:
         api_key = st.secrets["openai"]["api_key"]  # Get API key from Streamlit secrets
         prompt = f"Proofread the following text for the purpose of {purpose_input}: {text_input}"
-        feedback_response = call_openai_api(api_key, prompt, pre_prompt_input)
+        feedback_response = call_openai_api(api_key, prompt) #, pre_prompt_input)
         
         # Extract the content from the response
         if 'choices' in feedback_response and len(feedback_response['choices']) > 0:
