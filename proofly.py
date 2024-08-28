@@ -23,9 +23,9 @@ def call_openai_api(api_key, prompt):
     return response.json()  # Return the JSON response
 
 # Streamlit app layout
-st.title("Proofreading App")
+st.title("Proofly")
 text_input = st.text_area("Paste your work here:")
-purpose_input = st.text_input("Purpose of the text:")
+purpose_input = st.text_input("Describe the purpose of the text:")
 
 if st.button("Get Feedback"):
     if text_input and purpose_input:
