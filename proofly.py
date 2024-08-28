@@ -6,12 +6,12 @@ import openai
 openai.api_key = st.secrets["openai"]["api_key"]
 
 # Function to get feedback from OpenAI API
-def get_feedback(text, purpose, pre_prompt):
+def get_feedback(text_input, purpose_input, pre_prompt_input):
     response = openai.completions.create(
         model="gpt-3.5-turbo",
-        prompt=[
-            {"role": "system", "content": pre_prompt},
-            {"role": "user", "content": f"Proofread the following text for the purpose of {purpose}: {text}"}
+        message=[
+            {"role": "system", "content": pre_prompt_input},
+            {"role": "user", "content": f"Proofread the following text for the purpose of {purpose_input}: {text_input}"}
         ]
     )
     return response['choices'][0]['message']['content']
